@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCartUIStore } from "../store/cart-ui-store";
 import { useCartStore } from "../store/cart.store";
-import { ShoppingBag } from "lucide-react";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Navbar = () => {
   const openCart = useCartUIStore((state) => state.openCart);
@@ -30,7 +30,7 @@ const Navbar = () => {
             onClick={openCart}
             className="absolute right-0 flex items-center gap-2 text-white px-5 py-3 md:px-7 md:py-4 font-primary font-black uppercase tracking-widest text-sm md:text-base"
           >
-            <ShoppingBag className="w-5 h-5 md:w-6 md:h-6 text-black" strokeWidth={2.5} />
+            <FaCartShopping className="w-5 h-5 md:w-6 md:h-6 text-black" />
             {itemCount > 0 && (
               <span className="bg-white text-black text-xs font-black w-5 h-5 flex items-center justify-center rounded-full">
                 {itemCount}
