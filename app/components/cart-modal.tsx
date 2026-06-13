@@ -10,6 +10,7 @@ const CartModal = () => {
   const { cartItems, removeItem, updateItemQuantity } = useCartStore();
   const { isCartOpen, closeCart } = useCartUIStore();
   const [checkingOut, setCheckingOut] = useState(false);
+  console.log("Cart items in CartModal:", cartItems);
 
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -32,7 +33,11 @@ const CartModal = () => {
         }),
       });
       const { checkoutUrl } = await res.json();
-      if (checkoutUrl) window.location.href = checkoutUrl;
+     if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    } else {
+      console.error("No checkout URL found in response");
+    };
     } catch (err) {
       console.error(err);
     } finally {

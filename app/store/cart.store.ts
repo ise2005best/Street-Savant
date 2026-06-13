@@ -71,8 +71,7 @@ export const useCartStore = create(
 
         }),{
             name: 'cart-storage',
-            // changed cart storage to session storage due to high flunctuation of cart prices and exchange rates
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
         }
 )
 )

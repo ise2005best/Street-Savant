@@ -55,11 +55,13 @@ const ProductData = ({
   };
 
   const addItemToCart = () => {
+    if (!selectedVariantId) return;
     setIsCartOpen();
     addToCart(cartItem);
   };
 
   const outOfStock = product.totalInventory === 0;
+  const noVariantSelected = !selectedVariantId;
 
   return (
     <>
@@ -108,10 +110,10 @@ const ProductData = ({
 
         <button
           className="w-full py-3 bg-black rounded-md text-white text-sm font-primary font-semibold uppercase mb-8 hover:bg-secondary transition-colors duration-200 disabled:opacity-50"
-          disabled={outOfStock}
+          disabled={outOfStock || noVariantSelected}
           onClick={addItemToCart}
         >
-          {outOfStock ? "OUT OF STOCK" : "ADD TO CART"}
+          {outOfStock ? "OUT OF STOCK" : noVariantSelected ? "SELECT A SIZE" : "ADD TO CART"}
         </button>
 
         <div className="border-t-2 border-secondary">
@@ -223,10 +225,10 @@ const ProductData = ({
         </div>
         <button
           className="w-full py-3.5 bg-black font-secondary text-white font-black uppercase text-xs tracking-widest rounded-md disabled:opacity-50 active:bg-gray-900 transition-colors"
-          disabled={outOfStock}
+          disabled={outOfStock || noVariantSelected}
           onClick={addItemToCart}
         >
-          {outOfStock ? "OUT OF STOCK" : "ADD TO CART"}
+          {outOfStock ? "OUT OF STOCK" : noVariantSelected ? "SELECT A SIZE" : "ADD TO CART"}
         </button>
       </div>
     </>
