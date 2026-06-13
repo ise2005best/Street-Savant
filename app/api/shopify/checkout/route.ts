@@ -26,23 +26,17 @@ export async function POST(req: NextRequest) {
     }
 
     const shopifyStore = process.env.SHOPIFY_STORE;
-    // Build item string for URL
-    const queryItems = (items: { VariantId: string; quantity: number }[]) => {
-        return items
-          .map((item) => {
-            const id = item.VariantId.split('/').pop(); // Extract numeric ID
-            return `items[][id]=${id}&items[][quantity]=${item.quantity}`;
-          })
-          .join('&');
-      };
-      
-    const queryString = queryItems(items);
 
-    // Encode the cart add URL and redirect to checkout
-    const returnTo = encodeURIComponent(
-      `/cart/add?${queryString}&return_to=/checkout`
-    );
-    const fullUrl = `https://${shopifyStore}.myshopify.com/cart/clear?return_to=${returnTo}`;
+    // Cart permalink format: /cart/VARIANT_ID:QTY,VARIANT_ID:QTY
+    // This is universally supported by Shopify as a GET URL (unlike items[][] which is POST-only)
+    const cartPermalink = items
+      .map((item) => {
+        const id = item.VariantId.split("/").pop();
+        return `${id}:${item.quantity}`;
+      })
+      .join(",");
+
+    const fullUrl = `https://${shopifyStore}.myshopify.com/cart/${cartPermalink}`;
 
     return NextResponse.json({ checkoutUrl: fullUrl }, { status: 200 });
   } catch (error) {
