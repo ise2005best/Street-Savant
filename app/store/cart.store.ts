@@ -31,24 +31,18 @@ export const useCartStore = create(
             },
 
             updateItemQuantity(id, quantity) {
-                // if quantity is less than 1, remove the item from the cart
-                if(quantity < 1){
+                if (quantity < 1) {
                     get().removeItem(id);
+                    return;
                 }
-
                 const cartItems = get().getCart();
-                // Find the item in the cart
-                const item = cartItems.find(item => item.productId === id);
-                if(item){
-                    // Update the quantity of the item
-                    // need to create the cart component and let it reflect the changes
-                    set({ cartItems: cartItems.map(item => 
-                        item.productId === id 
-                            ? { ...item, quantity: quantity } 
+                set({
+                    cartItems: cartItems.map(item =>
+                        item.variantId === id
+                            ? { ...item, quantity }
                             : item
-                    ) });
-                }
-
+                    ),
+                });
             },
 
             removeItem: (id: string) => {
