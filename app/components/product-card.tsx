@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Info row — always visible below image */}
       <div className="flex items-start justify-between px-6 gap-2 pt-2 pb-1">
-        <h2 className="text-xs md:text-sm font-semibold font-primary text-black leading-tight line-clamp-2 flex-1">
+        <h2 className="text-xs md:text-sm font-semibold font-primary text-black leading-tight flex-1">
           {title}
         </h2>
         {price && (
