@@ -65,7 +65,7 @@ const ProductData = ({
     <>
       {/* ── Desktop layout (unchanged) ── */}
       <div className="hidden md:block w-full font-primary text-center">
-        <h1 className="text-2xl font-black text-black tracking-wide leading-snug mb-4">
+        <h1 className="text-2xl text-black tracking-wide leading-snug mb-4">
           {product?.title}
         </h1>
 
