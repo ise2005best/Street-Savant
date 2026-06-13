@@ -5,11 +5,22 @@
   --foreground: #171717;
 }
 
+@font-face {
+  font-family: "Inconsolata Variable";
+  src: url("/font/Inconsolata-VariableFont.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GT-Walsheim";
+  src: url('/font/GT-Walsheim-Regular-Oblique-Trial-BF651b7fc67342f.otf');
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-primary: "Inconsolata Variable";
+  --font-secondary: "GT-Walsheim";
 }
 
 @media (prefers-color-scheme: dark) {
