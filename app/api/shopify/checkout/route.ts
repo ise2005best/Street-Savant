@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const shopifyStore = process.env.SHOPIFY_STORE_DOMAIN;
+    const shopifyStore = process.env.SHOPIFY_STORE;
     // Build item string for URL
     const queryItems = (items: { VariantId: string; quantity: number }[]) => {
         return items
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     const returnTo = encodeURIComponent(
       `/cart/add?${queryString}&return_to=/checkout`
     );
-    const fullUrl = `https://${shopifyStore}/cart/clear?return_to=${returnTo}`;
+    const fullUrl = `https://${shopifyStore}.myshopify.com/cart/clear?return_to=${returnTo}`;
 
     return NextResponse.json({ checkoutUrl: fullUrl }, { status: 200 });
   } catch (error) {
